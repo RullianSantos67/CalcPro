@@ -161,7 +161,8 @@ public class MainActivity extends AppCompatActivity {
     private void calcularResultado() {
         if (aguardandoPorcentagem) {
             try {
-                double porcentagem = Double.parseDouble(expressaoBuilder.toString());
+                String porcentagemStr = expressaoBuilder.toString().replace(',', '.');
+                double porcentagem = Double.parseDouble(porcentagemStr);
                 double resultado = baseParaPorcentagem * (porcentagem / 100);
 
                 expressaoBuilder.setLength(0);
@@ -177,7 +178,8 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         try {
-            String expressao = expressaoBuilder.toString();
+            
+            String expressao = expressaoBuilder.toString().replace(',', '.');
 
             if (expressao.length() > 0 && isOperador(expressao.charAt(expressao.length() - 1))) {
                 expressao = expressao.substring(0, expressao.length() - 1);
@@ -200,6 +202,7 @@ public class MainActivity extends AppCompatActivity {
             textViewResultado.setText("Erro");
         }
     }
+
 
 
     private void calcularPorcentagem() {
